@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1",
+    "year": 1969,
+    "month": 7,
+    "day": 20,
+    "title": "アポロ11号 月面着陸",
+    "description": "ニール・アームストロングとバズ・オルドリンが人類初の月面着陸を果たした。",
+    "categories": ["科学", "技術"]
+  },
+  {
+    "id": "2",
+    "year": 1989,
+    "month": 11,
+    "day": 9,
+    "title": "ベルリンの壁崩壊",
+    "description": "東西ドイツを分断していたベルリンの壁が崩壊し、冷戦終結の象徴となった。",
+    "categories": ["政治"]
+  },
+  {
+    "id": "3",
+    "year": 1991,
+    "month": 8,
+    "day": 6,
+    "title": "World Wide Web 公開",
+    "description": "ティム・バーナーズ＝リーがWorld Wide Webを一般公開し、インターネット時代が始まった。",
+    "categories": ["技術"]
+  },
+  {
+    "id": "4",
+    "year": 2007,
+    "month": 1,
+    "day": 9,
+    "title": "iPhone 発表",
+    "description": "スティーブ・ジョブズが初代iPhoneを発表し、スマートフォン革命の幕を開けた。",
+    "categories": ["技術", "文化"]
+  },
+  {
+    "id": "5",
+    "year": 2020,
+    "month": 12,
+    "title": "COVID-19ワクチン接種開始",
+    "description": "世界各国でCOVID-19ワクチンの大規模接種が始まった。",
+    "categories": ["科学"]
+  },
+  {
+    "id": "6",
+    "year": 2024,
+    "month": 7,
+    "title": "パリオリンピック開催",
+    "description": "フランス・パリで夏季オリンピックが開催された。",
+    "categories": ["文化", "スポーツ"]
+  }
+]

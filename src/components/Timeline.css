@@ -1,0 +1,168 @@
+.timeline {
+  position: relative;
+  padding: 1rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #0f3460;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 0;
+  width: 50%;
+  position: relative;
+}
+
+.timeline-item.left {
+  align-self: flex-start;
+  padding-right: 2.5rem;
+}
+
+.timeline-item.right {
+  align-self: flex-end;
+  margin-left: 50%;
+  padding-left: 2.5rem;
+  justify-content: flex-start;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  width: 14px;
+  height: 14px;
+  background: #e94560;
+  border: 3px solid #0f3460;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item.left::after {
+  right: -7px;
+}
+
+.timeline-item.right::after {
+  left: -7px;
+}
+
+.timeline-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  transition: box-shadow 0.2s;
+}
+
+.timeline-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-date {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.timeline-categories {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.timeline-category {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 12px;
+  background: #e8eaf6;
+  color: #0f3460;
+  font-weight: 500;
+}
+
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: #16213e;
+}
+
+.timeline-description {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.timeline-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.timeline-actions button {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.timeline-actions button:hover {
+  background: #f0f0f0;
+}
+
+.timeline-actions .delete-btn {
+  color: #e94560;
+  border-color: #e94560;
+}
+
+.timeline-actions .delete-btn:hover {
+  background: #fde8ec;
+}
+
+.timeline-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .timeline::before {
+    left: 1rem;
+  }
+
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    width: 100%;
+    padding-left: 3rem;
+    padding-right: 0;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  .timeline-item::after,
+  .timeline-item.left::after,
+  .timeline-item.right::after {
+    left: 0.45rem;
+    right: auto;
+  }
+}
