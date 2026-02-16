@@ -156,6 +156,23 @@ const quantumComputingHistory: TimelineEvent[] = [
   { id: 'qc-12', year: 2023, title: '量子エラー訂正の進歩', description: 'Googleが量子エラー訂正のスケーリングにおける重要な進歩を達成し、実用的な量子コンピュータへの道を示した。', categories: ['量子コンピューティング'] },
 ];
 
+const aiFutureHistory: TimelineEvent[] = [
+  ...aiHistory,
+  { id: 'aif-1', year: 2025, title: 'AIエージェントの普及', description: '自律的にタスクを遂行するAIエージェントが実用化され、ソフトウェア開発や業務自動化に広く活用され始めた。', categories: ['AI', '未来予想'] },
+  { id: 'aif-2', year: 2026, title: 'マルチモーダルAIの標準化', description: 'テキスト・画像・音声・動画を統合的に扱うマルチモーダルAIが標準となり、あらゆる産業で活用が進む。', categories: ['AI', '未来予想'] },
+  { id: 'aif-3', year: 2027, title: 'AI科学者の登場', description: 'AIが独自に仮説を立て実験を設計する「AI科学者」が登場し、創薬や材料科学の研究を加速させる。', categories: ['AI', '未来予想'] },
+  { id: 'aif-4', year: 2029, title: 'AGI（汎用人工知能）の初期形態', description: '特定タスクを超えた汎用的な推論能力を持つAGIの初期形態が実現されると予測される。', categories: ['AI', '未来予想'] },
+  { id: 'aif-5', year: 2035, title: 'AIと人間の協働社会', description: 'AIが多くの知的労働を担い、人間とAIが役割分担する新しい社会構造が確立されると予測される。', categories: ['AI', '未来予想'] },
+  { id: 'aif-6', year: 2040, title: 'ASI（超知能）への道', description: '人間の知能を全領域で超える人工超知能（ASI）の実現に向けた研究が本格化すると予測される。', categories: ['AI', '未来予想'] },
+  { id: 'aif-7', year: 2045, title: 'シンギュラリティ', description: 'レイ・カーツワイルが予測した技術的特異点。AIが自己改良を繰り返し、人類の文明が根本的に変容すると予測される。', categories: ['AI', '未来予想'] },
+];
+
+const itHistory: TimelineEvent[] = [
+  ...aiHistory,
+  ...internetHistory,
+  ...programmingLanguageHistory,
+];
+
 export const defaultTimelines: TimelineTheme[] = [
   {
     id: 'ai-history',
@@ -216,5 +233,17 @@ export const defaultTimelines: TimelineTheme[] = [
     name: '量子コンピューティングの歴史',
     description: 'EPRパラドックスから量子超越性まで、量子計算の進化',
     events: quantumComputingHistory,
+  },
+  {
+    id: 'it-history',
+    name: 'IT史',
+    description: 'AI・インターネット・プログラミング言語を統合したIT技術の歴史',
+    events: itHistory,
+  },
+  {
+    id: 'ai-future',
+    name: 'AIと未来予想',
+    description: 'AIの歴史からAGI・シンギュラリティまで、人工知能の過去と未来',
+    events: aiFutureHistory,
   },
 ];
