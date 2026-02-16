@@ -5,6 +5,10 @@ type Props = {
   position: 'left' | 'right';
   onEdit: (event: TimelineEvent) => void;
   onDelete: (id: string) => void;
+  marginTop?: number;
+  isEditable: boolean;
+  onAddCategories?: (eventId: string) => void;
+  compact?: boolean;
 };
 
 function formatDate(event: TimelineEvent): string {
@@ -14,13 +18,16 @@ function formatDate(event: TimelineEvent): string {
   return parts.join('');
 }
 
-export default function TimelineItem({ event, position, onEdit, onDelete }: Props) {
+export default function TimelineItem({ event, position, onEdit, onDelete, marginTop, isEditable, onAddCategories, compact }: Props) {
   return (
-    <div className={`timeline-item ${position}`}>
+    <div
+      className={`timeline-item ${position}`}
+      style={marginTop != null ? { marginTop: `${marginTop}px` } : undefined}
+    >
       <div className="timeline-card">
         <div className="timeline-card-header">
           <span className="timeline-date">{formatDate(event)}</span>
-          {event.categories && event.categories.length > 0 && (
+          {!compact && event.categories && event.categories.length > 0 && (
             <span className="timeline-categories">
               {event.categories.map((cat) => (
                 <span key={cat} className="timeline-category">{cat}</span>
@@ -29,13 +36,21 @@ export default function TimelineItem({ event, position, onEdit, onDelete }: Prop
           )}
         </div>
         <h3 className="timeline-title">{event.title}</h3>
-        <p className="timeline-description">{event.description}</p>
-        <div className="timeline-actions">
-          <button onClick={() => onEdit(event)}>編集</button>
-          <button className="delete-btn" onClick={() => onDelete(event.id)}>
-            削除
-          </button>
-        </div>
+        {!compact && <p className="timeline-description">{event.description}</p>}
+        {!compact && (
+          <div className="timeline-actions">
+            {isEditable ? (
+              <>
+                <button onClick={() => onEdit(event)}>編集</button>
+                <button className="delete-btn" onClick={() => onDelete(event.id)}>
+                  削除
+                </button>
+              </>
+            ) : (
+              <button onClick={() => onAddCategories?.(event.id)}>カテゴリ追加</button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -132,3 +132,25 @@
   color: #fff;
   border-color: #0f3460;
 }
+
+@media (max-width: 600px) {
+  .graph-canvas {
+    min-height: 250px;
+  }
+
+  .network-toolbar {
+    gap: 0.4rem;
+  }
+
+  .network-toolbar button {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
+    min-height: 44px;
+  }
+
+  .resource-form {
+    max-width: none;
+    width: 95%;
+    padding: 1.25rem;
+  }
+}

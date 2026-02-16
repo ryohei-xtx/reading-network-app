@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react';
-import type { TimelineEvent } from '../types';
+import type { TimelineEvent, UserTimeline } from '../types';
 import './EventForm.css';
 
 type Props = {
   event?: TimelineEvent;
   onSubmit: (event: TimelineEvent) => void;
   onCancel: () => void;
+  userTimelines?: UserTimeline[];
 };
 
-export default function EventForm({ event, onSubmit, onCancel }: Props) {
+export default function EventForm({ event, onSubmit, onCancel, userTimelines = [] }: Props) {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
+  const [targetUserTimelines, setTargetUserTimelines] = useState<string[]>([]);
 
   useEffect(() => {
     if (event) {
@@ -27,9 +29,29 @@ export default function EventForm({ event, onSubmit, onCancel }: Props) {
     }
   }, [event]);
 
+  const toggleTarget = (id: string) => {
+    setTargetUserTimelines((prev) =>
+      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id],
+    );
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!year || !title) return;
+
+    const inputCategories = category
+      ? category.split(/[、,]/).map((s) => s.trim()).filter(Boolean)
+      : [];
+
+    // Merge sourceCategories from selected user timelines
+    const extraCategories = new Set<string>();
+    for (const utId of targetUserTimelines) {
+      const ut = userTimelines.find((u) => u.id === utId);
+      if (ut) {
+        for (const c of ut.sourceCategories) extraCategories.add(c);
+      }
+    }
+    const merged = [...new Set([...inputCategories, ...extraCategories])];
 
     onSubmit({
       id: event?.id ?? crypto.randomUUID(),
@@ -38,9 +60,7 @@ export default function EventForm({ event, onSubmit, onCancel }: Props) {
       day: day ? Number(day) : undefined,
       title,
       description,
-      categories: category
-        ? category.split(/[、,]/).map((s) => s.trim()).filter(Boolean)
-        : undefined,
+      categories: merged.length > 0 ? merged : undefined,
     });
   };
 
@@ -107,6 +127,24 @@ export default function EventForm({ event, onSubmit, onCancel }: Props) {
           placeholder="例: 科学、政治、技術（カンマ区切りで複数入力）"
         />
       </div>
+
+      {userTimelines.length > 0 && !event && (
+        <div className="form-group">
+          <label>追加先の年表</label>
+          <div className="category-checkboxes">
+            {userTimelines.map((ut) => (
+              <label key={ut.id} className="category-checkbox">
+                <input
+                  type="checkbox"
+                  checked={targetUserTimelines.includes(ut.id)}
+                  onChange={() => toggleTarget(ut.id)}
+                />
+                {ut.name}
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="form-actions">
         <button type="button" onClick={onCancel}>キャンセル</button>

@@ -19,6 +19,18 @@ export type Resource = {
   note?: string;
 };
 
+export type LibraryState = {
+  activeTimelines: string[];
+  categoryOverrides: Record<string, string[]>;
+};
+
+export type UserTimeline = {
+  id: string;
+  name: string;
+  sourceTimelines: string[];
+  sourceCategories: string[];
+};
+
 export type Edge = { from: string; to: string };
 
 export type ReadingGraph = {

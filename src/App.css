@@ -30,7 +30,16 @@ body {
   color: #16213e;
 }
 
-.tab-nav {
+.timeline-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tab-nav,
+.view-toggle {
   display: flex;
   justify-content: center;
   gap: 0;
@@ -45,6 +54,7 @@ body {
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
   color: #64748b;
+  text-decoration: none;
 }
 
 .tab-button:first-child {
@@ -111,12 +121,241 @@ body {
   z-index: 1000;
 }
 
+.category-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.category-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.category-checkbox:hover {
+  background: #f1f5f9;
+}
+
+.category-checkbox:has(input:checked) {
+  background: #e8eaf6;
+  border-color: #0f3460;
+  color: #0f3460;
+  font-weight: 600;
+}
+
+.category-checkbox input[type="checkbox"] {
+  accent-color: #0f3460;
+}
+
+/* カスタム（自分のデータ） */
+.category-checkbox.tl-custom {
+  border-color: #a5d6a7;
+}
+
+.category-checkbox.tl-custom:has(input:checked) {
+  background: #e8f5e9;
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.category-checkbox.tl-custom input[type="checkbox"] {
+  accent-color: #2e7d32;
+}
+
+/* 外部年表 */
+.category-checkbox.tl-external {
+  border-color: #cbd5e1;
+}
+
+.category-checkbox.tl-external:has(input:checked) {
+  background: #e8eaf6;
+  border-color: #0f3460;
+  color: #0f3460;
+}
+
+.category-checkbox.tl-external input[type="checkbox"] {
+  accent-color: #0f3460;
+}
+
+/* ユーザー作成年表 */
+.category-checkbox.tl-user {
+  border-color: #ce93d8;
+}
+
+.category-checkbox.tl-user:has(input:checked) {
+  background: #f3e5f5;
+  border-color: #7b1fa2;
+  color: #7b1fa2;
+}
+
+.category-checkbox.tl-user input[type="checkbox"] {
+  accent-color: #7b1fa2;
+}
+
+.user-timeline-delete.tl-user-delete {
+  border-color: #ce93d8;
+}
+
+.user-timeline-delete.tl-external-delete {
+  border-color: #cbd5e1;
+}
+
+.category-edit-event-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #16213e;
+  margin-bottom: 1rem;
+}
+
+.category-overrides-list {
+  margin-bottom: 1rem;
+}
+
+.category-overrides-list h3 {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.category-override-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.category-override-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  background: #e8eaf6;
+  border: 1px solid #0f3460;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #0f3460;
+}
+
+.category-override-tag button {
+  background: none;
+  border: none;
+  color: #0f3460;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0 0.15rem;
+  line-height: 1;
+}
+
+.category-override-tag button:hover {
+  color: #e74c3c;
+}
+
+.user-timeline-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.user-timeline-delete {
+  background: none;
+  border: 1px solid #cbd5e1;
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.5rem;
+  line-height: 1;
+  transition: color 0.2s, background 0.2s;
+}
+
+.user-timeline-label .category-checkbox {
+  border-radius: 6px 0 0 6px;
+}
+
+.user-timeline-delete:hover {
+  color: #e74c3c;
+  background: #fef2f2;
+}
+
+.create-timeline-button {
+  padding: 0.35rem 0.75rem;
+  border: 1px dashed #0f3460;
+  border-radius: 6px;
+  background: transparent;
+  color: #0f3460;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.create-timeline-button:hover {
+  background: #e8eaf6;
+}
+
+.create-timeline-modal {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.form-preview {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0.5rem 0;
+}
+
 @media (max-width: 600px) {
+  .app {
+    padding: 1rem 0.5rem;
+  }
+
   .app-header h1 {
     font-size: 1.5rem;
   }
 
+  .timeline-selector {
+    gap: 0.4rem;
+  }
+
+  .timeline-selector .category-checkbox {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .timeline-selector .user-timeline-delete {
+    padding: 0.3rem 0.4rem;
+  }
+
   .app-controls {
     flex-direction: column;
+  }
+
+  .category-checkboxes {
+    gap: 0.4rem;
+  }
+
+  .add-button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .create-timeline-button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .create-timeline-modal {
+    width: 95%;
+    max-width: none;
+    padding: 1.25rem;
   }
 }

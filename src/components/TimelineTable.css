@@ -1,0 +1,133 @@
+.timeline-table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.timeline-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.timeline-table th,
+.timeline-table td {
+  border: 1px solid #cbd5e1;
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.timeline-table thead th {
+  background: #0f3460;
+  color: #fff;
+  font-weight: 600;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+
+.timeline-table .col-date {
+  width: 100px;
+  white-space: nowrap;
+  font-weight: 600;
+  color: #16213e;
+}
+
+.timeline-table .col-summary {
+  min-width: 200px;
+}
+
+.timeline-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.cell-active {
+  background: #f0f4ff;
+}
+
+.cell-empty {
+  background: #fafafa;
+  color: #ccc;
+}
+
+.cell-content strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #16213e;
+}
+
+.cell-content p {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.cell-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cell-actions button {
+  padding: 0.2rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cell-actions button:hover {
+  background: #e8eaf6;
+}
+
+.cell-actions .delete-btn {
+  color: #e94560;
+  border-color: #e94560;
+}
+
+.cell-actions .delete-btn:hover {
+  background: #fef2f2;
+}
+
+.gap-row td {
+  background: #f8fafc;
+  text-align: center;
+  padding: 0.4rem;
+  border-left: none;
+  border-right: none;
+}
+
+.gap-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+.table-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #888;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .timeline-table {
+    font-size: 0.8rem;
+  }
+
+  .timeline-table th,
+  .timeline-table td {
+    padding: 0.5rem;
+  }
+
+  .timeline-table .col-date {
+    width: 80px;
+  }
+
+  .timeline-table .col-summary {
+    min-width: 140px;
+  }
+}

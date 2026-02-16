@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import type { Resource, Edge, ReadingGraph } from '../types';
+import type { Resource, ReadingGraph } from '../types';
 import {
   transitiveReduction,
   wouldCreateCycle,

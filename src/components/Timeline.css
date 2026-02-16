@@ -165,4 +165,16 @@
     left: 0.45rem;
     right: auto;
   }
+
+  .timeline-card {
+    padding: 0.9rem;
+  }
+
+  .timeline-title {
+    font-size: 1rem;
+  }
+
+  .timeline-actions button {
+    min-height: 44px;
+  }
 }
