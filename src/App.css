@@ -302,6 +302,35 @@ body {
   background: #e8eaf6;
 }
 
+.bulk-buttons {
+  display: inline-flex;
+  gap: 0;
+}
+
+.bulk-btn {
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #94a3b8;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bulk-btn:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.bulk-btn:last-child {
+  border-radius: 0 6px 6px 0;
+  border-left: none;
+}
+
+.bulk-btn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
 .create-timeline-modal {
   max-height: 80vh;
   overflow-y: auto;

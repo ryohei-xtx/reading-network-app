@@ -341,6 +341,23 @@ export default function App() {
             <header className="app-header">
               <h1>年表タイムライン</h1>
               <div className="timeline-selector">
+                <span className="bulk-buttons">
+                  <button
+                    className="bulk-btn"
+                    onClick={() => {
+                      const allIds = ['custom', ...visibleDefaultTimelines.map((t) => t.id), ...userTimelines.map((u) => u.id)];
+                      setActiveTimelines(allIds);
+                    }}
+                  >
+                    全選択
+                  </button>
+                  <button
+                    className="bulk-btn"
+                    onClick={() => setActiveTimelines([])}
+                  >
+                    全解除
+                  </button>
+                </span>
                 <label className="category-checkbox tl-custom">
                   <input
                     type="checkbox"
@@ -410,6 +427,20 @@ export default function App() {
               </div>
               <div className="app-controls">
                 <div className="category-checkboxes">
+                  <span className="bulk-buttons">
+                    <button
+                      className="bulk-btn"
+                      onClick={() => setSelectedCategories([...categories])}
+                    >
+                      全選択
+                    </button>
+                    <button
+                      className="bulk-btn"
+                      onClick={() => setSelectedCategories([])}
+                    >
+                      全解除
+                    </button>
+                  </span>
                   {categories.map((cat) => (
                     <label key={cat} className="category-checkbox">
                       <input
