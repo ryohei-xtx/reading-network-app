@@ -213,7 +213,7 @@ export default function TimelineTable({
     <div className="timeline-table-wrapper">
       <div className="table-toolbar">
         <button className="copy-excel-btn" onClick={copyToExcel}>
-          {copied ? 'コピーしました!' : 'Excelにコピー'}
+          {copied ? 'Done' : 'Copy'}
         </button>
       </div>
       <table className="timeline-table" ref={tableRef}>
