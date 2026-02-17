@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { TimelineEvent } from '../types';
 import './TimelineTable.css';
 
@@ -39,6 +39,10 @@ function toDecimalYear(e: TimelineEvent): number {
   return e.year + ((e.month ?? 1) - 1) / 12 + ((e.day ?? 1) - 1) / 365;
 }
 
+function esc(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 function formatGap(from: TimelineEvent, to: TimelineEvent): string {
   const diff = toDecimalYear(to) - toDecimalYear(from);
   if (diff >= 1) {
@@ -62,6 +66,48 @@ export default function TimelineTable({
   onAddCategories,
   compact,
 }: Props) {
+  const tableRef = useRef<HTMLTableElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  const copyToExcel = async () => {
+    // Build TSV (plain text) and HTML table for clipboard
+    const headers = ['日付', 'タイトル', '説明', ...selectedCategories];
+    const tsvRows = [headers.join('\t')];
+    const htmlRows = [`<tr>${headers.map((h) => `<th>${esc(h)}</th>`).join('')}</tr>`];
+
+    for (const event of events) {
+      const date = formatDate(event);
+      const cols = [date, event.title, event.description];
+      const htmlCols = [date, event.title, event.description];
+      for (const cat of selectedCategories) {
+        const belongs = event.categories?.includes(cat);
+        cols.push(belongs ? event.title : '');
+        htmlCols.push(belongs ? event.title : '');
+      }
+      tsvRows.push(cols.join('\t'));
+      htmlRows.push(`<tr>${htmlCols.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`);
+    }
+
+    const tsv = tsvRows.join('\n');
+    const html = `<table>${htmlRows.join('')}</table>`;
+
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'text/plain': new Blob([tsv], { type: 'text/plain' }),
+          'text/html': new Blob([html], { type: 'text/html' }),
+        }),
+      ]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback: copy TSV only
+      await navigator.clipboard.writeText(tsv);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   const sharedColorMap = useMemo(() => {
     const map = new Map<string, string>();
     let colorIndex = 0;
@@ -165,7 +211,12 @@ export default function TimelineTable({
 
   return (
     <div className="timeline-table-wrapper">
-      <table className="timeline-table">
+      <div className="table-toolbar">
+        <button className="copy-excel-btn" onClick={copyToExcel}>
+          {copied ? 'コピーしました!' : 'Excelにコピー'}
+        </button>
+      </div>
+      <table className="timeline-table" ref={tableRef}>
         <thead>
           <tr>
             <th className="col-date">日付</th>
