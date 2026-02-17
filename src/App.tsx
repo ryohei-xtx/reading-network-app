@@ -95,6 +95,7 @@ export default function App() {
   const [userTimelines, setUserTimelines] = useState<UserTimeline[]>(loadUserTimelines);
   const [timelineFormData, setTimelineFormData] = useState<{ name: string; sourceTimelines: string[]; sourceCategories: string[] } | null>(null);
   const [hiddenDefaultTimelines, setHiddenDefaultTimelines] = useState<string[]>(loadHiddenDefaults);
+  const [showDescriptions, setShowDescriptions] = useState(false);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(customEvents));
@@ -368,7 +369,7 @@ export default function App() {
                 </label>
                 {visibleDefaultTimelines.map((theme) => (
                   <span key={theme.id} className="user-timeline-label">
-                    <label className="category-checkbox tl-external">
+                    <label className="category-checkbox tl-external" title={theme.description}>
                       <input
                         type="checkbox"
                         checked={activeTimelines.includes(theme.id)}
@@ -410,7 +411,24 @@ export default function App() {
                 >
                   年表を作成
                 </button>
+                <button
+                  className="create-timeline-button"
+                  onClick={() => setShowDescriptions((prev) => !prev)}
+                >
+                  {showDescriptions ? '説明を閉じる' : '年表の説明'}
+                </button>
               </div>
+              {showDescriptions && (
+                <div className="timeline-descriptions">
+                  {visibleDefaultTimelines.map((theme) => (
+                    <div key={theme.id} className="timeline-desc-item">
+                      <span className="timeline-desc-name">{theme.name}</span>
+                      <span className="timeline-desc-text">{theme.description}</span>
+                      <span className="timeline-desc-count">{theme.events.length}件</span>
+                    </div>
+                  ))}
+                </div>
+              )}
               <div className="view-toggle">
                 <button
                   className={`tab-button ${viewMode === 'timeline' ? 'active' : ''}`}
