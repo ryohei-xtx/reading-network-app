@@ -7,15 +7,17 @@ type Props = {
   onSubmit: (event: TimelineEvent) => void;
   onCancel: () => void;
   userTimelines?: UserTimeline[];
+  allCategories?: string[];
 };
 
-export default function EventForm({ event, onSubmit, onCancel, userTimelines = [] }: Props) {
+export default function EventForm({ event, onSubmit, onCancel, userTimelines = [], allCategories = [] }: Props) {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [newCategory, setNewCategory] = useState('');
   const [targetUserTimelines, setTargetUserTimelines] = useState<string[]>([]);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export default function EventForm({ event, onSubmit, onCancel, userTimelines = [
       setDay(event.day ? String(event.day) : '');
       setTitle(event.title);
       setDescription(event.description);
-      setCategory(event.categories?.join('、') ?? '');
+      setSelectedCategories(event.categories ?? []);
     }
   }, [event]);
 
@@ -35,13 +37,23 @@ export default function EventForm({ event, onSubmit, onCancel, userTimelines = [
     );
   };
 
+  const toggleCategory = (cat: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat],
+    );
+  };
+
+  const addNewCategory = () => {
+    const trimmed = newCategory.trim();
+    if (trimmed && !selectedCategories.includes(trimmed)) {
+      setSelectedCategories((prev) => [...prev, trimmed]);
+    }
+    setNewCategory('');
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!year || !title) return;
-
-    const inputCategories = category
-      ? category.split(/[、,]/).map((s) => s.trim()).filter(Boolean)
-      : [];
 
     // Merge sourceCategories from selected user timelines
     const extraCategories = new Set<string>();
@@ -51,7 +63,7 @@ export default function EventForm({ event, onSubmit, onCancel, userTimelines = [
         for (const c of ut.sourceCategories) extraCategories.add(c);
       }
     }
-    const merged = [...new Set([...inputCategories, ...extraCategories])];
+    const merged = [...new Set([...selectedCategories, ...extraCategories])];
 
     onSubmit({
       id: event?.id ?? crypto.randomUUID(),
@@ -120,12 +132,37 @@ export default function EventForm({ event, onSubmit, onCancel, userTimelines = [
 
       <div className="form-group">
         <label>カテゴリ</label>
-        <input
-          type="text"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          placeholder="例: 科学、政治、技術（カンマ区切りで複数入力）"
-        />
+        {allCategories.length > 0 && (
+          <div className="category-picker">
+            {allCategories.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                className={`category-chip ${selectedCategories.includes(cat) ? 'selected' : ''}`}
+                onClick={() => toggleCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
+        <div className="new-category-row">
+          <input
+            type="text"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                addNewCategory();
+              }
+            }}
+            placeholder="新規カテゴリを入力"
+          />
+          <button type="button" className="new-category-add" onClick={addNewCategory}>
+            追加
+          </button>
+        </div>
       </div>
 
       {userTimelines.length > 0 && !event && (

@@ -516,6 +516,7 @@ export default function App() {
                   onSubmit={handleSubmit}
                   onCancel={handleCancel}
                   userTimelines={userTimelines}
+                  allCategories={allAvailableCategories}
                 />
               </div>
             )}

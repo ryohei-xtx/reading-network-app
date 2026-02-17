@@ -89,6 +89,60 @@
   background: #16213e;
 }
 
+.category-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.category-chip {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.category-chip:hover {
+  background: #f1f5f9;
+}
+
+.category-chip.selected {
+  background: #e8eaf6;
+  border-color: #0f3460;
+  color: #0f3460;
+  font-weight: 600;
+}
+
+.new-category-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.new-category-row input {
+  flex: 1;
+}
+
+.new-category-add {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #0f3460;
+  border-radius: 6px;
+  background: #fff;
+  color: #0f3460;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.new-category-add:hover {
+  background: #e8eaf6;
+}
+
 @media (max-width: 600px) {
   .event-form {
     width: 95%;
