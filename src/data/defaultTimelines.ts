@@ -158,13 +158,32 @@ const quantumComputingHistory: TimelineEvent[] = [
 
 const aiFutureHistory: TimelineEvent[] = [
   ...aiHistory,
-  { id: 'aif-1', year: 2025, title: 'AIエージェントの普及', description: '自律的にタスクを遂行するAIエージェントが実用化され、ソフトウェア開発や業務自動化に広く活用され始めた。', categories: ['AI', '未来予想'] },
-  { id: 'aif-2', year: 2026, title: 'マルチモーダルAIの標準化', description: 'テキスト・画像・音声・動画を統合的に扱うマルチモーダルAIが標準となり、あらゆる産業で活用が進む。', categories: ['AI', '未来予想'] },
-  { id: 'aif-3', year: 2027, title: 'AI科学者の登場', description: 'AIが独自に仮説を立て実験を設計する「AI科学者」が登場し、創薬や材料科学の研究を加速させる。', categories: ['AI', '未来予想'] },
-  { id: 'aif-4', year: 2029, title: 'AGI（汎用人工知能）の初期形態', description: '特定タスクを超えた汎用的な推論能力を持つAGIの初期形態が実現されると予測される。', categories: ['AI', '未来予想'] },
-  { id: 'aif-5', year: 2035, title: 'AIと人間の協働社会', description: 'AIが多くの知的労働を担い、人間とAIが役割分担する新しい社会構造が確立されると予測される。', categories: ['AI', '未来予想'] },
-  { id: 'aif-6', year: 2040, title: 'ASI（超知能）への道', description: '人間の知能を全領域で超える人工超知能（ASI）の実現に向けた研究が本格化すると予測される。', categories: ['AI', '未来予想'] },
-  { id: 'aif-7', year: 2045, title: 'シンギュラリティ', description: 'レイ・カーツワイルが予測した技術的特異点。AIが自己改良を繰り返し、人類の文明が根本的に変容すると予測される。', categories: ['AI', '未来予想'] },
+  // 2023年の実際の出来事
+  { id: 'aif-2023a', year: 2023, month: 3, title: 'GPT-4リリース', description: 'OpenAIがマルチモーダル対応の大規模言語モデルGPT-4を公開。テキストと画像を入力として処理可能になり、推論能力が大幅に向上した。', categories: ['AI'] },
+  { id: 'aif-2023b', year: 2023, month: 7, title: 'Meta Llama 2公開', description: 'Metaが700億パラメータのオープンソースLLM「Llama 2」を無償公開。オープンソースAIの発展を加速させた。', categories: ['AI'] },
+  { id: 'aif-2023c', year: 2023, month: 11, title: 'OpenAI経営危機', description: 'OpenAI取締役会がCEOサム・アルトマンを突然解任。従業員のほぼ全員が辞職の意向を示し、5日後にアルトマンが復帰。AI企業ガバナンスの課題が浮き彫りに。', categories: ['AI'] },
+  { id: 'aif-2023d', year: 2023, month: 11, title: 'AI安全サミット開催', description: '英国ブレッチリー・パークで世界初のAI安全サミットが開催。28カ国がAIリスクへの国際協力に合意する「ブレッチリー宣言」に署名した。', categories: ['AI', 'AI規制'] },
+  { id: 'aif-2023e', year: 2023, month: 12, title: 'Google Gemini発表', description: 'GoogleがGPT-4対抗のマルチモーダルAIモデル「Gemini」をUltra/Pro/Nanoの3サイズで発表。Google DeepMind統合後初の主要モデルとなった。', categories: ['AI'] },
+  // 2024年の実際の出来事
+  { id: 'aif-2024a', year: 2024, month: 2, title: 'OpenAI Sora発表', description: 'OpenAIがテキストから高品質動画を生成するAIモデル「Sora」のデモ映像を公開。動画生成AIの新時代の到来を示した。', categories: ['AI'] },
+  { id: 'aif-2024b', year: 2024, month: 3, title: 'Claude 3ファミリーリリース', description: 'AnthropicがClaude 3をOpus/Sonnet/Haikuの3モデルで公開。最上位Opusは複数のベンチマークでGPT-4を上回った。', categories: ['AI'] },
+  { id: 'aif-2024c', year: 2024, month: 5, title: 'GPT-4o（Omni）リリース', description: 'OpenAIがテキスト・画像・音声を統合処理するGPT-4oを公開。音声応答320ミリ秒と人間並みの速度を実現した。', categories: ['AI'] },
+  { id: 'aif-2024d', year: 2024, month: 8, title: 'EU AI法発効', description: '世界初の包括的AI規制法であるEU AI法が発効。リスクベースのアプローチでAIの開発と利用を規制する枠組みが確立された。', categories: ['AI', 'AI規制'] },
+  { id: 'aif-2024e', year: 2024, month: 9, title: 'OpenAI o1発表', description: 'OpenAIが「推論」に特化した新モデルo1を公開。回答前に「思考」するプロセスにより、数学・科学の複雑な問題で大幅な性能向上を達成した。', categories: ['AI'] },
+  { id: 'aif-2024f', year: 2024, month: 10, title: 'AI研究者がノーベル賞受賞', description: 'ジェフリー・ヒントンがニューラルネットワーク研究でノーベル物理学賞を、デミス・ハサビスらがAlphaFold2でノーベル化学賞を受賞。AIの科学的貢献が最高の栄誉で認められた。', categories: ['AI'] },
+  // 2025年の実際の出来事
+  { id: 'aif-2025a', year: 2025, month: 1, title: 'DeepSeek-R1公開', description: '中国のDeepSeekが開発費600万ドル未満で推論特化オープンソースモデルを公開。OpenAI o1に匹敵する性能を低コストで達成し、AI業界に衝撃を与えた。', categories: ['AI'] },
+  { id: 'aif-2025b', year: 2025, month: 2, title: 'パリAIアクションサミット', description: 'フランスとインドの共催で100カ国以上から参加者が集まるAIサミットをパリで開催。AI安全から「AIアクション」へと議論が発展した。', categories: ['AI', 'AI規制'] },
+  { id: 'aif-2025c', year: 2025, month: 5, title: 'Claude Opus 4 / Sonnet 4リリース', description: 'Anthropicが次世代モデルを公開。コーディングや高度な推論タスクで大幅な性能向上を達成した。', categories: ['AI'] },
+  // 未来予想
+  { id: 'aif-f1', year: 2025, title: 'AIエージェントの普及', description: '自律的にタスクを遂行するAIエージェントが実用化され、ソフトウェア開発や業務自動化に広く活用され始めた。', categories: ['AI', '未来予想'] },
+  { id: 'aif-f2', year: 2026, title: 'AIエージェント導入率の急増', description: 'Gartnerの予測によると、タスク特化型AIエージェントの企業導入率が5%未満から40%に急増する。', categories: ['AI', '未来予想'] },
+  { id: 'aif-f3', year: 2027, title: 'AI科学者の登場', description: 'AIが独自に仮説を立て実験を設計する「AI科学者」が登場し、創薬や材料科学の研究を加速させると予測される（Anthropic、OpenAI）。', categories: ['AI', '未来予想'] },
+  { id: 'aif-f4', year: 2029, title: 'AGI（汎用人工知能）の初期形態', description: '特定タスクを超えた汎用的な推論能力を持つAGIの初期形態が実現されると予測される。', categories: ['AI', '未来予想'] },
+  { id: 'aif-f5', year: 2030, title: '日本AI・半導体産業基盤強化', description: '日本政府が掲げる10兆円規模のAI・半導体産業基盤強化計画の目標年。「世界で最もAIフレンドリーな国」を目指す。', categories: ['AI', '未来予想'] },
+  { id: 'aif-f6', year: 2035, title: 'AIと人間の協働社会', description: 'AIが多くの知的労働を担い、人間とAIが役割分担する新しい社会構造が確立されると予測される。', categories: ['AI', '未来予想'] },
+  { id: 'aif-f7', year: 2040, title: 'ASI（超知能）への道', description: '人間の知能を全領域で超える人工超知能（ASI）の実現に向けた研究が本格化すると予測される。', categories: ['AI', '未来予想'] },
+  { id: 'aif-f8', year: 2045, title: 'シンギュラリティ', description: 'レイ・カーツワイルが予測した技術的特異点。AIが自己改良を繰り返し、人類の文明が根本的に変容すると予測される。', categories: ['AI', '未来予想'] },
 ];
 
 const itHistory: TimelineEvent[] = [
