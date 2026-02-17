@@ -342,6 +342,45 @@ body {
   flex-shrink: 0;
 }
 
+.timeline-desc-text.editable {
+  cursor: pointer;
+  border-bottom: 1px dashed #cbd5e1;
+  transition: border-color 0.2s;
+}
+
+.timeline-desc-text.editable:hover {
+  border-color: #0f3460;
+  color: #1e293b;
+}
+
+.timeline-desc-edit {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.timeline-desc-input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #0f3460;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-family: inherit;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.timeline-desc-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(15, 52, 96, 0.15);
+}
+
+.timeline-desc-edit-actions {
+  display: flex;
+  gap: 0;
+}
+
 .bulk-buttons {
   display: inline-flex;
   gap: 0;

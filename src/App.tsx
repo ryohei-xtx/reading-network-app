@@ -13,6 +13,7 @@ const STORAGE_KEY = 'timeline-events';
 const LIBRARY_KEY = 'timeline-library';
 const USER_TIMELINES_KEY = 'timeline-user-timelines';
 const HIDDEN_DEFAULTS_KEY = 'timeline-hidden-defaults';
+const DESC_OVERRIDES_KEY = 'timeline-desc-overrides';
 
 function loadCustomEvents(): TimelineEvent[] {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -96,6 +97,13 @@ export default function App() {
   const [timelineFormData, setTimelineFormData] = useState<{ name: string; sourceTimelines: string[]; sourceCategories: string[] } | null>(null);
   const [hiddenDefaultTimelines, setHiddenDefaultTimelines] = useState<string[]>(loadHiddenDefaults);
   const [showDescriptions, setShowDescriptions] = useState(false);
+  const [descOverrides, setDescOverrides] = useState<Record<string, string>>(() => {
+    const saved = localStorage.getItem(DESC_OVERRIDES_KEY);
+    if (saved) { try { return JSON.parse(saved); } catch { /* ignore */ } }
+    return {};
+  });
+  const [editingDescId, setEditingDescId] = useState<string | null>(null);
+  const [editingDescText, setEditingDescText] = useState('');
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(customEvents));
@@ -112,6 +120,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem(HIDDEN_DEFAULTS_KEY, JSON.stringify(hiddenDefaultTimelines));
   }, [hiddenDefaultTimelines]);
+
+  useEffect(() => {
+    localStorage.setItem(DESC_OVERRIDES_KEY, JSON.stringify(descOverrides));
+  }, [descOverrides]);
 
   const visibleDefaultTimelines = useMemo(
     () => defaultTimelines.filter((t) => !hiddenDefaultTimelines.includes(t.id)),
@@ -420,13 +432,63 @@ export default function App() {
               </div>
               {showDescriptions && (
                 <div className="timeline-descriptions">
-                  {visibleDefaultTimelines.map((theme) => (
-                    <div key={theme.id} className="timeline-desc-item">
-                      <span className="timeline-desc-name">{theme.name}</span>
-                      <span className="timeline-desc-text">{theme.description}</span>
-                      <span className="timeline-desc-count">{theme.events.length}件</span>
-                    </div>
-                  ))}
+                  {visibleDefaultTimelines.map((theme) => {
+                    const desc = descOverrides[theme.id] ?? theme.description;
+                    const isEditing = editingDescId === theme.id;
+                    return (
+                      <div key={theme.id} className="timeline-desc-item">
+                        <span className="timeline-desc-name">{theme.name}</span>
+                        {isEditing ? (
+                          <div className="timeline-desc-edit">
+                            <textarea
+                              className="timeline-desc-input"
+                              value={editingDescText}
+                              onChange={(e) => setEditingDescText(e.target.value)}
+                              rows={2}
+                              autoFocus
+                            />
+                            <div className="timeline-desc-edit-actions">
+                              <button
+                                className="bulk-btn"
+                                onClick={() => {
+                                  const trimmed = editingDescText.trim();
+                                  if (trimmed && trimmed !== theme.description) {
+                                    setDescOverrides((prev) => ({ ...prev, [theme.id]: trimmed }));
+                                  } else {
+                                    setDescOverrides((prev) => {
+                                      const next = { ...prev };
+                                      delete next[theme.id];
+                                      return next;
+                                    });
+                                  }
+                                  setEditingDescId(null);
+                                }}
+                              >
+                                保存
+                              </button>
+                              <button
+                                className="bulk-btn"
+                                onClick={() => setEditingDescId(null)}
+                              >
+                                取消
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <span
+                            className="timeline-desc-text editable"
+                            onClick={() => {
+                              setEditingDescId(theme.id);
+                              setEditingDescText(desc);
+                            }}
+                          >
+                            {desc}
+                          </span>
+                        )}
+                        <span className="timeline-desc-count">{theme.events.length}件</span>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
               <div className="view-toggle">
