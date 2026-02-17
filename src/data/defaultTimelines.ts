@@ -194,12 +194,48 @@ const aiFutureHistory: TimelineEvent[] = [
   // 未来予想（予測の統合）
   { id: 'aif-f1', year: 2025, title: 'AIエージェントの普及', description: '自律的にタスクを遂行するAIエージェントが実用化され、ソフトウェア開発や業務自動化に広く活用され始めた。アルトマンが「2025年中にAIエージェントが労働力に加わる」と予測。', categories: ['AI', '未来予想'] },
   { id: 'aif-f2', year: 2026, title: 'AIエージェント導入率の急増', description: 'Gartnerの予測によると、タスク特化型AIエージェントの企業導入率が5%未満から40%に急増する。マスク・アモデイ・孫正義らはこの時期にAGI到来を予測。', categories: ['AI', '未来予想'] },
-  { id: 'aif-f3', year: 2027, title: 'AI科学者・ロボットの登場', description: 'アルトマンは「現実世界でタスクを実行できるロボット」の登場を予測。アモデイは「ノーベル賞級の研究をAIが複数分野で行える」と予測。（Sam Altman Blog、Entrepreneur）', categories: ['AI', '未来予想'] },
-  { id: 'aif-f4', year: 2029, title: 'AGI実現（カーツワイル予測）', description: 'レイ・カーツワイルが1999年から一貫して予測する年。コンピュータがチューリングテストに合格しAGIを達成。「長寿脱出速度」にも到達し、毎年の科学進歩で余命が1年以上延びるようになると予測。（The Singularity Is Nearer、2024年）', categories: ['AI', '未来予想'] },
-  { id: 'aif-f5', year: 2030, title: '超知能・全人類超え', description: 'マスクは「AIの集合知能が全人類の知能を超える」と予測。孫正義は「人間の叡智の1万倍のASI」を予測。アルトマンは「1人の人間が2020年と比べてはるかに多くのことを達成できる」と予測。日本政府10兆円AI計画の目標年。', categories: ['AI', '未来予想'] },
-  { id: 'aif-f6', year: 2035, title: '想像を超える発見の連続', description: 'アルトマンは「高エネルギー物理学の解明から宇宙植民地化、脳コンピュータインターフェースまで、想像を超える発見が連続する」と予測。（Sam Altman Blog「The Gentle Singularity」）', categories: ['AI', '未来予想'] },
-  { id: 'aif-f7', year: 2045, title: 'シンギュラリティ（カーツワイル予測）', description: 'レイ・カーツワイルが1999年から予測する技術的特異点。人間がAIと融合し「100万倍賢く」なり、「人間と人工知能の区別が存在しなくなる」。AIが自己改良を繰り返し文明が根本的に変容する。（The Singularity Is Near / The Singularity Is Nearer）', categories: ['AI', '未来予想'] },
-  { id: 'aif-f8', year: 2050, title: 'AI絶滅リスクの分岐点', description: 'ヒントンは2050年までにAIが人類絶滅をもたらす確率を10〜20%と警告。ベンジオは「安全対策の進歩が技術の進歩に追いついていない」と指摘。この時期までにAIガバナンスが成功するかが人類の命運を分けると複数の識者が言及。', categories: ['AI', '未来予想'] },
+  // 2027年
+  { id: 'aif-f3', year: 2027, title: '超人的AIコーダーの出現', description: 'AI 2027プロジェクト（元OpenAI研究者Daniel Kokotajloら、2025年4月発表）は2027年初頭にAIがコーディングを完全自動化する「超人的コーダー」が出現すると予測。中盤には研究・交渉・戦略まで対応する「超人的リモートワーカー」に進化。（ai-2027.com）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f3b', year: 2027, title: '中国AI統合率70%達成目標', description: '中国国務院「AI+」国家戦略（2025年8月発表）の目標年。科学技術・産業・消費・民生・ガバナンス・国際協力の6大セクターでAI統合率70%以上を目指す。次世代AI端末・エージェントの普及率も70%超。（Newsweek、SCMP）', categories: ['AI', '未来予想', 'AI規制'] },
+  { id: 'aif-f3c', year: 2027, title: 'CFS核融合パイロットがブレークイーブン突破', description: 'Commonwealth Fusion Systems（CFS）のパイロット施設が科学的ブレークイーブン（投入エネルギー以上の出力）を突破する見込み。AI技術が核融合炉の設計・プラズマ制御を加速。（Fortune、TIME）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f3d', year: 2027, title: 'EU AI法の完全適用', description: 'EU AI法がGPAIモデル提供者を含む全規定で完全適用。世界初の包括的AI規制の枠組みが確立し、他国の規制にも影響を与える。（EU AI Act Implementation Timeline）', categories: ['AI', '未来予想', 'AI規制'] },
+  { id: 'aif-f3e', year: 2027, title: 'アージェンティックAIの淘汰', description: 'Gartner予測：アージェンティックAIプロジェクトの40%以上がコスト超過や期待外れの成果で中止。新規雇用契約の70%にAIペルソナのライセンス条項が含まれるようになる。（Gartner）', categories: ['AI', '未来予想'] },
+  // 2028年
+  { id: 'aif-f4', year: 2028, title: 'AIがB2B購買の90%を代行', description: 'Gartner予測：B2B購買の90%がAIエージェントを介して行われ、15兆ドル以上の支出を代行。エンタープライズソフトの33%にアージェンティックAI搭載。AIが日常業務の15%を自律的に意思決定。（Gartner）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f4b', year: 2028, title: 'Helion核融合発電所稼働', description: 'サム・アルトマンが出資するHelion Energyの核融合発電所が稼働開始予定。Microsoftが最初の電力購入契約者。AIデータセンターの莫大な電力需要に対する解決策として期待。（Fortune）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f4c', year: 2028, title: 'AGI実現確率50%（Shane Legg）', description: 'Google DeepMind共同創設者Shane Leggが「最小限のAGIが2028年までに実現する確率50%」と予測（2026年1月発言）。アルトマンも2028年までに「本格的なAI研究者」を開発すると予測。（80,000 Hours）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f4d', year: 2028, title: 'NASA月面AI建設ロボット展開', description: 'NASAのArtemis計画でAI搭載自律建設ロボットを月面に展開。月面レゴリスを使用して着陸パッド・居住施設を建設する計画。（Space Daily）', categories: ['AI', '未来予想'] },
+  // 2029年
+  { id: 'aif-f5', year: 2029, title: 'AGI実現（カーツワイル予測）', description: 'レイ・カーツワイルが1999年から一貫して予測する年。コンピュータがチューリングテストに合格しAGIを達成。「長寿脱出速度」にも到達し、毎年の科学進歩で余命が1年以上延びると予測。NVIDIAファンもこの年にAIがあらゆるテストで人間と同等以上になると予測。（The Singularity Is Nearer）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f5b', year: 2029, title: 'Neuralink規制承認・BCI商業化', description: 'Neuralinkが規制承認の取得を目標とする年。2025年時点で既に5名の重度麻痺患者がデジタルデバイスを思考で操作中。外科手術による大幅な年間収益を見込む。（Frontiers、Diamandis）', categories: ['AI', '未来予想'] },
+  // 2030年
+  { id: 'aif-f6', year: 2030, title: '超知能・全人類超え', description: 'マスクは「AIの集合知能が全人類の知能を超える」と予測。孫正義は「人間の叡智の1万倍のASI」を予測。アルトマンは「1人の人間が2020年と比べてはるかに多くのことを達成できる」と予測。日本政府10兆円AI計画の目標年。', categories: ['AI', '未来予想'] },
+  { id: 'aif-f6b', year: 2030, title: '1.7億の新規雇用と9,200万の雇用消滅', description: '世界経済フォーラム（WEF）予測：2030年までに1億7,000万の新規雇用が創出される一方、9,200万の雇用が消滅。現行スキルの39%が陳腐化。Goldman Sachsは3億のフルタイム雇用相当が代替可能と予測。（WEF、Goldman Sachs）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f6c', year: 2030, title: '中国AI採用率90%・インテリジェント経済', description: '中国「AI+」戦略の目標年。経済全体でAI採用率90%以上、AI産業規模1,000億ドル、関連産業への付加価値1兆ドル以上を目指す。（SCMP、Chinascope）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f6d', year: 2030, title: '宇宙経済1兆ドル到達', description: 'Morgan Stanley予測：宇宙経済が1兆ドルに到達（2025年時点5,500億ドル）。SpaceXによる初の有人火星ミッション（2029〜2030年目標）もこの時期。（Morgan Stanley）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f6e', year: 2030, title: 'IT業務の100%にAI関与', description: 'Gartner予測：IT業務の0%がAIなしで遂行される時代に。75%がAI補助、25%がAI単独。エンタープライズソフトの80%がマルチモーダル化。ナレッジワーカーの50%以上がAIエージェントと協働。（Gartner）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f6f', year: 2030, title: '温暖化1.5度突破（Stanford AI予測）', description: 'Stanford大学のAI分析により、地球温暖化が産業革命前比1.5度を突破すると予測。一方、LSE Grantham研究所はAIを活用すれば温室効果ガスを年間32〜54億トンCO2換算削減可能と発表（2025年）。（Stanford、LSE）', categories: ['AI', '未来予想'] },
+  // 2032年
+  { id: 'aif-f7', year: 2032, title: 'AGI実現（カーツワイル修正予測）', description: 'レイ・カーツワイルが2024年にAGI実現予測を従来の2045年から2032年に前倒し。ヒューマノイドロボット市場は660億ドルに到達する見込み。（Fortune Business Insights）', categories: ['AI', '未来予想'] },
+  // 2034〜2035年
+  { id: 'aif-f8', year: 2035, title: '中国「インテリジェント文明」への移行', description: '中国「AI+」戦略の最終目標年。AIが中国の近代化を支える中核基盤となる完全な「インテリジェント文明」への移行を目指す。（Chinascope）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f8b', year: 2035, title: '脳がクラウドにシームレス接続', description: 'レイ・カーツワイルの予測：脳がクラウドにシームレスに接続される。ヒューマノイドロボットは職場に200万台（UBS予測）。Goldman Sachsは市場規模380億ドルと予測。（Kurzweil、UBS、Goldman Sachs）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f8c', year: 2035, title: 'AI創薬市場1,600億ドル', description: 'Towards Healthcare予測：AI創薬市場が1,604.9億ドルに到達（年平均成長率23.22%）。初のAI設計医薬品が規制承認を取得し市場投入。個別化医療が広く採用される。（Towards Healthcare、BioSpace）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f8d', year: 2035, title: '想像を超える発見の連続', description: 'アルトマンは「高エネルギー物理学の解明から宇宙植民地化、脳コンピュータインターフェースまで、想像を超える発見が連続する」と予測。（Sam Altman Blog「The Gentle Singularity」）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f8e', year: 2035, endYear: 2045, title: 'マスク「労働はオプションになる」', description: 'イーロン・マスク予測（2025〜2026年発言）：今後10〜20年以内に労働は「オプション」になり、「ベーシック」ではなく「ユニバーサル・ハイ・インカム」が実現。希少性はほぼ消滅すると予測。（Newsweek）', categories: ['AI', '未来予想'] },
+  // 2040年
+  { id: 'aif-f9', year: 2040, title: 'ヒューマノイドロボット800万台（米国）', description: 'Morgan Stanley予測：米国だけで約800万台のヒューマノイドロボットが稼働（医療・製造・物流に集中）。生体培養筋肉組織を統合したロボットが登場し、限定的な自己修復が可能に。（Morgan Stanley）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f9b', year: 2040, title: 'マスク「ヒューマノイド100億台」', description: 'イーロン・マスクの予測：世界でヒューマノイドロボットが100億台に達する。David Holz（VC）はより保守的に約10億台と予測。（mikekalil.com）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f9c', year: 2040, title: 'NASA AI宇宙探査強化', description: 'NASAが2024年に発足した「NASA 2040 AI Track」の目標年。AIの自律的意思決定・宇宙船航行・科学的発見への活用を強化。月軌道上「ゲートウェイ」基地の建設も計画。（Capitol Tech、Hitecher）', categories: ['AI', '未来予想'] },
+  // 2045年
+  { id: 'aif-f10', year: 2045, title: 'シンギュラリティ（カーツワイル予測）', description: 'レイ・カーツワイルが1999年から予測する技術的特異点。人間がAIと融合し「100万倍賢く」なり、「人間と人工知能の区別が存在しなくなる」。AIが自己改良を繰り返し文明が根本的に変容する。（The Singularity Is Near / The Singularity Is Nearer）', categories: ['AI', '未来予想'] },
+  // 2050年
+  { id: 'aif-f11', year: 2050, title: 'ヒューマノイド市場5兆ドル・10億台', description: 'Morgan Stanley予測：ヒューマノイドロボット市場が5兆ドル超、販売台数10億台に到達。UBSは職場に3億台と予測。家庭用ロボットも8,000万台に。（Morgan Stanley、UBS）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f11b', year: 2050, title: 'AI教育の完全変革', description: 'Harvard Gazette予測（2025年9月）：すべての子どもが読み書き・計算・コーディングを学んだ後、AIコーチ型教師のもとで思考力を鍛える体験型学習に移行。画一的な評価は「完全に時代遅れ」に。（Harvard Gazette）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f11c', year: 2050, title: 'AIの権利・人格の法的議論が本格化', description: '専門家予測：人間とロボットの結婚が合法化される可能性の議論。ロボットの意識やモラル・市民的権利に関する議論が深刻化。AIに「継続的存在の権利」や搾取からの保護を認めるべきかの法的議論が進む。（Yale Law Journal、Impact Lab）', categories: ['AI', '未来予想'] },
+  { id: 'aif-f11d', year: 2050, title: 'AI絶滅リスクの分岐点', description: 'ヒントンは2050年までにAIが人類絶滅をもたらす確率を10〜20%と警告。ベンジオは「安全対策の進歩が技術の進歩に追いついていない」と指摘。この時期までにAIガバナンスが成功するかが人類の命運を分けると複数の識者が言及。', categories: ['AI', '未来予想'] },
+  // 2060年
+  { id: 'aif-f12', year: 2050, endYear: 2060, title: 'ほぼ人間と区別不能なロボット', description: '研究予測：人工臓器、合成循環システム、人体模倣型エネルギー生成システムを搭載したロボットが登場。外見・機能ともにほぼ人間と区別不能な存在に。（Morgan Stanley、01core）', categories: ['AI', '未来予想'] },
 ];
 
 const itHistory: TimelineEvent[] = [
