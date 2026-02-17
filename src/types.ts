@@ -1,6 +1,7 @@
 export type TimelineEvent = {
   id: string;
   year: number;
+  endYear?: number;
   month?: number;
   day?: number;
   title: string;

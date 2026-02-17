@@ -12,6 +12,7 @@ type Props = {
 
 export default function EventForm({ event, onSubmit, onCancel, userTimelines = [], allCategories = [] }: Props) {
   const [year, setYear] = useState('');
+  const [endYear, setEndYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
   const [title, setTitle] = useState('');
@@ -23,6 +24,7 @@ export default function EventForm({ event, onSubmit, onCancel, userTimelines = [
   useEffect(() => {
     if (event) {
       setYear(String(event.year));
+      setEndYear(event.endYear ? String(event.endYear) : '');
       setMonth(event.month ? String(event.month) : '');
       setDay(event.day ? String(event.day) : '');
       setTitle(event.title);
@@ -68,6 +70,7 @@ export default function EventForm({ event, onSubmit, onCancel, userTimelines = [
     onSubmit({
       id: event?.id ?? crypto.randomUUID(),
       year: Number(year),
+      endYear: endYear ? Number(endYear) : undefined,
       month: month ? Number(month) : undefined,
       day: day ? Number(day) : undefined,
       title,
@@ -88,6 +91,15 @@ export default function EventForm({ event, onSubmit, onCancel, userTimelines = [
             value={year}
             onChange={(e) => setYear(e.target.value)}
             required
+          />
+        </div>
+        <div className="form-group">
+          <label>〜年</label>
+          <input
+            type="number"
+            value={endYear}
+            onChange={(e) => setEndYear(e.target.value)}
+            placeholder="期間"
           />
         </div>
         <div className="form-group">

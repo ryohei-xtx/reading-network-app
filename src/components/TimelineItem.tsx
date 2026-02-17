@@ -15,7 +15,11 @@ function formatDate(event: TimelineEvent): string {
   const parts: string[] = [String(event.year) + '年'];
   if (event.month) parts.push(String(event.month) + '月');
   if (event.day) parts.push(String(event.day) + '日');
-  return parts.join('');
+  const start = parts.join('');
+  if (event.endYear && event.endYear !== event.year) {
+    return `${start}〜${event.endYear}年`;
+  }
+  return start;
 }
 
 export default function TimelineItem({ event, position, onEdit, onDelete, marginTop, isEditable, onAddCategories, compact }: Props) {
